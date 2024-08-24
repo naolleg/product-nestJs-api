@@ -11,9 +11,9 @@ export class ProductController {
     @Body('price') prodPrice: number,
     @Body('name') prodName: string,
   ): any {
-    // Call the insertProduct method of the productService
+    
     const id = this.productService.insertProduct(prodName, prodTitle, prodPrice);
-    // Return the generated ID
+
     return { id: id };
     // This endpoint adds a new product to the database
   }
