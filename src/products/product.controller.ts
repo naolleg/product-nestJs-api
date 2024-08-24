@@ -1,17 +1,20 @@
-import { Controller, Post ,Body } from "@nestjs/common";
-import { productService } from "./productService";
+import { Controller, Post, Body } from '@nestjs/common';
+import { productService } from './productService';
 
 @Controller('products')
-export class productController{
-    constructor(private readonly productservice:productService){}
-   @Post()
-    addProduct(
-        @Body("title")prodtitle:string,
-        @Body("price")prodprice:number,
-        @Body("name")prodname:string,
-    ):any{
+export class ProductController {
+  constructor(private readonly productService: productService) {}
 
- const id= this.productservice.insertproduct(prodname,prodtitle,prodprice);
-  return {id:id}
-    }
+  @Post()
+  addProduct(
+    @Body('title') prodTitle: string,
+    @Body('price') prodPrice: number,
+    @Body('name') prodName: string,
+  ): any {
+    // Call the insertProduct method of the productService
+    const id = this.productService.insertProduct(prodName, prodTitle, prodPrice);
+    // Return the generated ID
+    return { id: id };
+    // This endpoint adds a new product to the database
+  }
 }
